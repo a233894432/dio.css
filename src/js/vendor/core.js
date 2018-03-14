@@ -170,7 +170,7 @@
 
   /**
    * 频率控制 返回函数连续调用时，func 执行频率限定为 次 / wait
-   *
+   * 节流
    * @param  {function}   func      传入函数
    * @param  {number}     wait      表示时间窗口的间隔
    * @param  {object}     options   如果想忽略开始边界上的调用，传入{leading: false}。
@@ -218,6 +218,7 @@
 
   /**
    * 空闲控制 返回函数连续调用时，空闲时间必须大于或等于 wait，func 才会执行
+   * 防抖动
    *
    * @param  {function} func        传入函数
    * @param  {number}   wait        表示时间窗口的间隔
