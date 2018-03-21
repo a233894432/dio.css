@@ -7,7 +7,7 @@
 
 
  */
-(function($, w, d) {
+(function ($, w, d) {
   "use strict";
 
   /**
@@ -15,7 +15,7 @@
    * @param length
    * @returns {string}
    */
-  $.pseudoUnique = function(length) {
+  $.pseudoUnique = function (length) {
     /// <summary>Returns a pseudo unique alpha-numeric string of the given length.</summary>
     /// <param name="length" type="Number">The length of the string to return. Defaults to 8.</param>
     /// <returns type="String">The pseudo unique alpha-numeric string.</returns>
@@ -39,7 +39,7 @@
   /**
    * 判断HTML 中 dir 值
    */
-  $.support.rtl = (function() {
+  $.support.rtl = (function () {
     return $("html[dir=rtl]").length ? true : false;
   })();
 
@@ -50,7 +50,7 @@
    * @return :true合理的IP地址
    *
    */
-  $.isIP = function(str) {
+  $.isIP = function (str) {
     var pattern = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
 
     return pattern.test(str);
@@ -63,7 +63,7 @@
    * @return: true表示合格输入参数
    *
    */
-  $.isCellphone = function(str) {
+  $.isCellphone = function (str) {
     /**
      *@descrition:手机号码段规则
      * 13段：130、131、132、133、134、135、136、137、138、139
@@ -83,7 +83,7 @@
    * @return -> true表示合格的邮箱。
    *
    */
-  $.isEmail = function(str) {
+  $.isEmail = function (str) {
     /**
      * @descrition:邮箱规则
      * 1.邮箱以a-z、A-Z、0-9开头，最小长度为1.
@@ -105,7 +105,7 @@
    * @return : true表示合理，验证通过
    *
    */
-  $.isAvaiableLength = function(minL, maxL, str) {
+  $.isAvaiableLength = function (minL, maxL, str) {
     return str.length >= minL && str.length <= maxL ? true : false;
   };
 
@@ -116,7 +116,7 @@
    * @return : true表示全部为中文,false为不全是中文，或没有中文。
    *
    */
-  $.isChinese = function(str) {
+  $.isChinese = function (str) {
     var pattern = /^[\u0391-\uFFE5]+$/g;
     return pattern.test(str);
   };
@@ -126,7 +126,7 @@
    * @param url 可传.可不传
    * @returns {*}
    */
-  $.getQuery = function(name, url) {
+  $.getQuery = function (name, url) {
     var reg = new RegExp("(^|\\?|&)" + name + "=([^&]*)(\\s|&|$)", "i");
     var url = url || window.location.search.substr(1).match(reg);
     if (reg.test(url)) return decodeURIComponent(RegExp.$2.replace(/\+/g, " "));
@@ -141,7 +141,7 @@
    * @param {any} arg_val  替换后的参数的值
    * @returns url 参数替换后的url
    */
-  $.changeURLArg = function(url, arg, arg_val) {
+  $.changeURLArg = function (url, arg, arg_val) {
     var pattern = arg + "=([^&]*)";
     var replaceText = arg + "=" + arg_val;
     if (url.match(pattern)) {
@@ -162,7 +162,7 @@
    * @param {key} key值
    * @param {val} Val 值
    */
-  $.replaceURL = function(key, val) {
+  $.replaceURL = function (key, val) {
     let oURL = window.location.href;
     let nURL = $.changeURLArg(oURL, key, val);
     window.history.replaceState(null, null, nURL);
@@ -178,21 +178,21 @@
    * @return {function}             返回客户调用函数
    *
    */
-  $.throttleA = function(func, wait, options) {
+  $.throttleA = function (func, wait, options) {
     var context, args, result;
     var timeout = null;
     // 上次执行时间点
     var previous = 0;
     if (!options) options = {};
     // 延迟执行函数
-    var later = function() {
+    var later = function () {
       // 若设定了开始边界不执行选项，上次执行时间始终为0
       previous = options.leading === false ? 0 : new Date().getTime();
       timeout = null;
       result = func.apply(context, args);
       if (!timeout) context = args = null;
     };
-    return function() {
+    return function () {
       var now = new Date().getTime();
       // 首次执行时，如果设定了开始边界不执行选项，将上次执行时间设定为当前时间。
       if (!previous && options.leading === false) previous = now;
@@ -225,10 +225,10 @@
    * @param  {boolean}  immediate   设置为ture时，调用触发于开始边界而不是结束边界
    * @return {function}             返回客户调用函数
    */
-  $.debounce = function(func, wait, immediate) {
+  $.debounce = function (func, wait, immediate) {
     var timeout, args, context, timestamp, result;
 
-    var later = function() {
+    var later = function () {
       // 据上一次触发时间间隔
       var last = new Date().getTime() - timestamp;
 
@@ -245,7 +245,7 @@
       }
     };
 
-    return function() {
+    return function () {
       context = this;
       args = arguments;
       timestamp = new Date().getTime();
@@ -273,19 +273,74 @@
         console.log("Resource conscious resize callback!");
       });
    */
-  $.throttle = function(type, name, obj) {
+  $.throttle = function (type, name, obj) {
     obj = obj || window;
     var running = false;
-    var func = function() {
+    var func = function () {
       if (running) {
         return;
       }
       running = true;
-      requestAnimationFrame(function() {
+      requestAnimationFrame(function () {
         obj.dispatchEvent(new CustomEvent(name));
         running = false;
       });
     };
     obj.addEventListener(type, func);
   };
+
+  /**
+   *  生成随机整数
+   * @param {*} min 
+   * @param {*} max 
+   */
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+
+  }
+  /**
+   * 打乱数组顺序， 洗牌算法
+   * 
+   * @param {*} arr  初始的数组
+   * @returns _arr   打乱后的数组
+   */
+  $.shuffle = function (arr) {
+
+    let _arr = arr.slice();        //深拷贝数组
+    for (let i = 0; i < _arr.length; i++) {
+      let j = getRandomInt(0, i);
+      let t = _arr[i];
+      _arr[i] = _arr[j];
+      _arr[j] = t;
+    }
+
+    return _arr;
+
+  }
+
+
+  /**
+  * 监听出错文件JS
+  *
+  * @param {any} errMsg
+  * @param {any} scriptURI
+  * @param {any} lineNumber
+  * @param {any} columnNumber
+  * @param {any} errorObj
+  */
+  w.onerror = function (errMsg, scriptURI, lineNumber, columnNumber, errorObj) {
+    setTimeout(function () {
+      var rst = {
+        "错误信息：": errMsg,
+        "出错文件：": scriptURI,
+        "出错行号：": lineNumber,
+        "出错列号：": columnNumber,
+        "错误详情：": errorObj
+      };
+
+      console.log(JSON.stringify(rst, null, 10));
+    });
+  };
+
+
 })(jQuery, window, document);

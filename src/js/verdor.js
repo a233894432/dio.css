@@ -7,7 +7,7 @@
 
 
  */
-(function($, w, d) {
+(function ($, w, d) {
   "use strict";
 
   /**
@@ -15,7 +15,7 @@
    * @param length
    * @returns {string}
    */
-  $.pseudoUnique = function(length) {
+  $.pseudoUnique = function (length) {
     /// <summary>Returns a pseudo unique alpha-numeric string of the given length.</summary>
     /// <param name="length" type="Number">The length of the string to return. Defaults to 8.</param>
     /// <returns type="String">The pseudo unique alpha-numeric string.</returns>
@@ -39,7 +39,7 @@
   /**
    * 判断HTML 中 dir 值
    */
-  $.support.rtl = (function() {
+  $.support.rtl = (function () {
     return $("html[dir=rtl]").length ? true : false;
   })();
 
@@ -50,7 +50,7 @@
    * @return :true合理的IP地址
    *
    */
-  $.isIP = function(str) {
+  $.isIP = function (str) {
     var pattern = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
 
     return pattern.test(str);
@@ -63,7 +63,7 @@
    * @return: true表示合格输入参数
    *
    */
-  $.isCellphone = function(str) {
+  $.isCellphone = function (str) {
     /**
      *@descrition:手机号码段规则
      * 13段：130、131、132、133、134、135、136、137、138、139
@@ -83,7 +83,7 @@
    * @return -> true表示合格的邮箱。
    *
    */
-  $.isEmail = function(str) {
+  $.isEmail = function (str) {
     /**
      * @descrition:邮箱规则
      * 1.邮箱以a-z、A-Z、0-9开头，最小长度为1.
@@ -105,7 +105,7 @@
    * @return : true表示合理，验证通过
    *
    */
-  $.isAvaiableLength = function(minL, maxL, str) {
+  $.isAvaiableLength = function (minL, maxL, str) {
     return str.length >= minL && str.length <= maxL ? true : false;
   };
 
@@ -116,7 +116,7 @@
    * @return : true表示全部为中文,false为不全是中文，或没有中文。
    *
    */
-  $.isChinese = function(str) {
+  $.isChinese = function (str) {
     var pattern = /^[\u0391-\uFFE5]+$/g;
     return pattern.test(str);
   };
@@ -126,7 +126,7 @@
    * @param url 可传.可不传
    * @returns {*}
    */
-  $.getQuery = function(name, url) {
+  $.getQuery = function (name, url) {
     var reg = new RegExp("(^|\\?|&)" + name + "=([^&]*)(\\s|&|$)", "i");
     var url = url || window.location.search.substr(1).match(reg);
     if (reg.test(url)) return decodeURIComponent(RegExp.$2.replace(/\+/g, " "));
@@ -142,8 +142,8 @@
    * @param {any} columnNumber
    * @param {any} errorObj
    */
-  w.onerror = function(errMsg, scriptURI, lineNumber, columnNumber, errorObj) {
-    setTimeout(function() {
+  w.onerror = function (errMsg, scriptURI, lineNumber, columnNumber, errorObj) {
+    setTimeout(function () {
       var rst = {
         "错误信息：": errMsg,
         "出错文件：": scriptURI,
