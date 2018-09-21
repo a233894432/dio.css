@@ -1,0 +1,131 @@
+@import "../common/mixins.scss";
+
+.pgContainer {
+  min-height: 100vh;
+  // display: grid;
+  // grid-template-areas: "d d d d d" "d d d d d" "d d d d d" "c c c c c";
+  // grid-template-rows: repeat(3, 1fr) 0.2fr;
+  // grid-template-columns: repeat(5, 1fr);
+  background: radial-gradient(#444, #222);
+}
+
+#dropzones {
+  width: 100%;
+  height: 100%;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.dropzone {
+  // position: relative;
+  display: -webkit-flex;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
+.dropCol {
+  position: relative;
+  display: -webkit-flex;
+  display: flex;
+  flex: 1;
+  color: white;
+  border: 1px solid yellow;
+}
+
+.puzzle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  &.onActive {
+    box-shadow: 0 0 5px 1px red, 0 0 0 1px black;
+    z-index: 2;
+  }
+  // &:hover{
+  //   box-shadow: 0 0 5px 1px red, 0 0 0 1px black;
+  //   z-index: 2;
+  // }
+  // &:active{
+  //   box-shadow: 0 0 5px 1px red, 0 0 0 1px black;
+  //   z-index: 2;
+  // }
+}
+
+.puzzle.dragging {}
+
+#dropzones-wrap {
+  // grid-area: d;
+  width: 100%;
+  height: 100%;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  box-sizing: border-box;
+}
+@-webkit-keyframes solved {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  10% {
+    opacity: 0;
+    -webkit-transform: rotateY(12deg);
+    transform: rotateY(12deg);
+  }
+
+  25% {
+    opacity: 1;
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 0;
+    transfrom: scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: rotateY(-12deg);
+    transform: rotateY(-12deg);
+  }
+}
+@keyframes solved {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  10% {
+    opacity: 0;
+    -webkit-transform: rotateY(12deg);
+    transform: rotateY(12deg);
+  }
+
+  25% {
+    opacity: 1;
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 0;
+    transfrom: scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: rotateY(-12deg);
+    transform: rotateY(-12deg);
+  }
+}

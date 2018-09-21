@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+        ~(function () {
+            var o = $({});
+            $.jianting = function () {
+                o.on.apply(o, arguments);
+            }
+            $.tongzhi = function () {
+                o.trigger.apply(o, arguments);
+            }
+
+            $.shanchu = function () {
+                o.off.apply(o, arguments);
+            }
+
+        })()
+
+        $.jianting("频道", function (e, a, b) {
+            // alert(a + b)
+            console.log(a);
+            console.log(b);
+        })
+        $.jianting("频道", function (e, a, b) {
+            // alert(a - b)
+            console.log(a);
+            console.log(b);
+        })
+        setTimeout(function () {
+            $.tongzhi("频道", [1, 2]);
+        }, 1000)
+    </script>
+</body>
+
+</html>
