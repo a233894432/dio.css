@@ -1,4 +1,9 @@
 {
     "vsicons.presets.angular": false,
-    "editor.minimap.enabled": true
+    "editor.minimap.enabled": true,
+    "easycompile.compile": {
+        "ignore": [
+            "**/_*.scss"
+        ]
+    }
 }
